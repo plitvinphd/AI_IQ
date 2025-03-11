@@ -56,11 +56,19 @@ class Evaluator:
                 self.log_messages.append(log_message)
                 return False
         elif self.task_type == "entity_recognition":
-            # Implement entity recognition evaluation logic
-            pass
-        else:
-            # Default to False if task type is unknown
-            return False
+            expected_entities = set(re.findall(r'\b\w+\b', self.expected_output.lower()))  # Extract words as entities
+            response_entities = set(re.findall(r'\b\w+\b', response.lower()))
+            
+            # Check if response contains at least the expected entities
+            missing_entities = expected_entities - response_entities
+            extra_entities = response_entities - expected_entities
+            
+            if not missing_entities:  # If all expected entities are in response
+                return True
+            else:
+                log_message = f"Missing entities: {missing_entities}\nExtra entities in response: {extra_entities}"
+                self.log_messages.append(log_message)
+                return False
 
     def llm_evaluate(self, response):
         if not self.evaluator_model_manager:
