@@ -229,6 +229,32 @@ def app_body():
         # Display the CSV data preview
         import pandas as pd
         df = pd.read_csv(f'{st.session_state["username"]}_results.csv')
+        # Calculate metrics
+        correct_count = df['correct'].sum() if 'correct' in df.columns else 0
+        total_count = len(df)
+        correct_percentage = (correct_count / total_count * 100) if total_count > 0 else 0
+        
+        # Add metrics to dataframe for CSV export
+        metrics_df = pd.DataFrame({
+            'metric': ['total_trials', 'correct_count', 'correct_percentage'],
+            'value': [total_count, correct_count, f'{correct_percentage:.2f}%']
+        })
+        
+        # Append metrics to existing CSV
+        with open(f'{st.session_state["username"]}_results.csv', 'a') as f:
+            f.write("\n\n# Summary Metrics\n")
+        metrics_df.to_csv(f'{st.session_state["username"]}_results.csv', mode='a', index=False)
+        
+        # Display metrics prominently
+        st.subheader("Results Summary")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Total Trials", total_count)
+        with col2:
+            st.metric("Correct Responses", int(correct_count))
+        with col3:
+            st.metric("Success Rate", f"{correct_percentage:.2f}%")
+            
         st.subheader("Data Preview")
         st.dataframe(df.head(100)) # Display first 100 rows as a preview
 
