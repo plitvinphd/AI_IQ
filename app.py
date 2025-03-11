@@ -9,7 +9,7 @@ from trial_manager import TrialManager
 import json
 
 def main():
-    st.title("Onva LLM Profile Analysis")
+    st.title("LLM Profile Analysis")
 
     # Initialize session state
     if 'logged_in' not in st.session_state:
