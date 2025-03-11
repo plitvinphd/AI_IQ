@@ -39,13 +39,18 @@ class ModelManager:
         try:
             # Determine if the model is a chat model
             chat_models = [
-                "gpt-4",
-                "gpt-4-turbo",
-                "gpt-3.5-turbo",
+                "gpt-4.5-preview",
+                "gpt-4.5-preview-2025-02-27",
+                "o1",
+                "o1-mini", 
+                "o3-mini",
+                "o1-mini-2024-09-12",
+                "o1-preview-2024-09-12",
                 "gpt-4o-mini",
                 "gpt-4o",
-                "o1-mini-2024-09-12",
-                "o1-preview-2024-09-12"
+                "gpt-4-turbo",
+                "gpt-4",
+                "gpt-3.5-turbo"
             ]
 
             if self.model_name in chat_models:
