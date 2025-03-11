@@ -61,6 +61,11 @@ def app_body():
     provider = st.sidebar.selectbox("Provider", ["OpenAI", "Anthropic"])
     if provider == "OpenAI":
         model_name = st.sidebar.selectbox("Model Name", [
+            "gpt-4.5-preview",
+            "gpt-4.5-preview-2025-02-27",
+            "o1",
+            "o1-mini", 
+            "o3-mini",
             "o1-mini-2024-09-12",
             "o1-preview-2024-09-12",
             "gpt-4o-mini",
@@ -72,8 +77,8 @@ def app_body():
         api_key = st.session_state['api_keys'].get('openai', '')
     else:
         model_name = st.sidebar.selectbox("Model Name", [
+            "claude-3-7-sonnet-20250219",
             "claude-3-5-sonnet-20241022",
-            "claude-3-5-sonnet-20240620",
             "claude-3-5-haiku-20241022"
         ])
         api_key = st.session_state['api_keys'].get('anthropic', '')
@@ -111,6 +116,11 @@ def app_body():
 
         if evaluator_provider == "OpenAI":
             evaluator_model_name = st.selectbox("Evaluator Model Name", [
+                "gpt-4.5-preview",
+                "gpt-4.5-preview-2025-02-27",
+                "o1",
+                "o1-mini", 
+                "o3-mini",
                 "o1-mini-2024-09-12",
                 "o1-preview-2024-09-12",
                 "gpt-4o-mini",
@@ -118,12 +128,11 @@ def app_body():
                 "gpt-4-turbo",
                 "gpt-4",
                 "gpt-3.5-turbo"
-                # Add other OpenAI models suitable for evaluation
             ])
         else:
             evaluator_model_name = st.selectbox("Evaluator Model Name", [
                 "claude-3-5-sonnet-20241022",
-                "claude-3-5-sonnet-20240620",
+                "claude-3-7-sonnet-20250219",
                 "claude-3-5-haiku-20241022"
                 # Add other Anthropic models suitable for evaluation
             ])
