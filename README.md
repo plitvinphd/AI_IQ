@@ -1,6 +1,10 @@
-# AI IQ - Onva LLM Profile Analysis 
+# AI IQ - LLM Profile Analysis 
 
 A Streamlit application for analyzing LLM profiles and evaluating their responses using algorithmic or LLM-based methods.
+
+Check out the web application live:
+
+https://onvallm.streamlit.app/
 
 ## Features
 
